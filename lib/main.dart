@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quotes_app/viewModel/quote_viewModel.dart';
 import 'package:quotes_app/views/quote_view.dart';
 
 void main() {
@@ -10,9 +12,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(body: QuoteView()),
+    return ChangeNotifierProvider(
+      create: (_) => QuoteController(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: QuoteView(),
+      ),
     );
   }
 }

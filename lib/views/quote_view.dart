@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quotes_app/controllers/quote_controller.dart';
+import 'package:provider/provider.dart';
+import 'package:quotes_app/viewModel/quote_viewModel.dart';
 
 class QuoteView extends StatefulWidget {
   const QuoteView({super.key});
@@ -9,10 +10,10 @@ class QuoteView extends StatefulWidget {
 }
 
 class QuoteViewState extends State<QuoteView> {
-  final _quote = QuoteController();
-
   @override
   Widget build(BuildContext context) {
+    final quote = Provider.of<QuoteController>(context);
+
     return (Scaffold(
       appBar: AppBar(
         title: const Text("Random Dev Quotes"),
@@ -31,7 +32,7 @@ class QuoteViewState extends State<QuoteView> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 50, horizontal: 15),
                   child: Text(
-                    _quote.randomQuotes().text,
+                    quote.randomQuotes().text,
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 20),
                   ),
@@ -41,7 +42,7 @@ class QuoteViewState extends State<QuoteView> {
                 height: 20,
               ),
               FilledButton(
-                  onPressed: () => setState(() {}),
+                  onPressed: () => quote.randomQuotes(),
                   child: const Text("Generer"))
             ],
           ),
