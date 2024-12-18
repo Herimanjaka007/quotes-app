@@ -1,4 +1,4 @@
-import 'dart:math'; // Importez cette bibliothèque pour générer des nombres aléatoires
+import 'dart:math'; 
 import '../models/quote_model.dart';
 
 class QuoteController {
