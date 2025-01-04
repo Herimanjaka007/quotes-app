@@ -16,7 +16,7 @@ class QuoteController extends ChangeNotifier {
     return quotes[random.nextInt(quotes.length)];
   }
 
-//Suppression
+//Suppression des citations
   void removeQuote(int index) {
     if (index >= 0 && index < _model.quotes.length) {
       _model.quotes.removeAt(index);
