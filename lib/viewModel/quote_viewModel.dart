@@ -1,5 +1,4 @@
 // ignore_for_file: file_names
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -15,5 +14,13 @@ class QuoteController extends ChangeNotifier {
     notifyListeners();
     final random = Random();
     return quotes[random.nextInt(quotes.length)];
+  }
+
+//Suppression by lovasoa
+  void removeQuote(int index) {
+    if (index >= 0 && index < _model.quotes.length) {
+      _model.quotes.removeAt(index);
+      notifyListeners();
+    }
   }
 }
