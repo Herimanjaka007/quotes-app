@@ -10,11 +10,19 @@ class QuoteView extends StatefulWidget {
 }
 
 class QuoteViewState extends State<QuoteView> {
+  final TextEditingController _quoteController = TextEditingController();
+
+  @override
+  void dispose() {
+    _quoteController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final quote = Provider.of<QuoteController>(context);
 
-    return (Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: const Text("Random Dev Quotes"),
         backgroundColor: const Color.fromARGB(255, 123, 22, 255),
@@ -42,12 +50,37 @@ class QuoteViewState extends State<QuoteView> {
                 height: 20,
               ),
               FilledButton(
-                  onPressed: () => quote.randomQuotes(),
-                  child: const Text("Generer"))
+                onPressed: () => setState(() => quote.randomQuotes()),
+                child: const Text("Generer"),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: _quoteController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Ajouter une citation",
+                  hintText: "Entrez une citation ici",
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              FilledButton(
+                onPressed: () {
+                  final newQuote = _quoteController.text.trim();
+                  if (newQuote.isNotEmpty) {
+                    // quote.addQuote(newQuote); //ito ilay fonction "ajouter" addquote efa poinss
+                    _quoteController.clear();
+                  }
+                },
+                child: const Text("Ajouter"),
+              ),
             ],
           ),
         ),
       ),
-    ));
+    );
   }
 }
