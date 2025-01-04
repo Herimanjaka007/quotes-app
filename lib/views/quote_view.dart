@@ -82,7 +82,7 @@ class QuoteViewState extends State<QuoteView> {
                 onPressed: () {
                   final newQuote = _quoteController.text.trim();
                   if (newQuote.isNotEmpty) {
-                    // quote.addQuote(newQuote); // ito ilay méthode add quote efa poinss
+                    // quote.addQuote(newQuote); // ito ilay méthode add quote efa poinss TSARA
                     _quoteController.clear();
                   }
                 },
