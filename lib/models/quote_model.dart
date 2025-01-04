@@ -1,5 +1,5 @@
 class Quote {
-  final String text;
+  String text;
 
   Quote({required this.text});
 }
@@ -35,5 +35,12 @@ class QuoteModel {
 
   Quote getQuote(int index) {
     return _quotes.elementAt(index);
+  }
+
+  //modifier la citation
+  void modifyQuote(int index, String newText) {
+    if (index >= 0 && index < _quotes.length) {
+      _quotes[index].text = newText;
+    }
   }
 }
