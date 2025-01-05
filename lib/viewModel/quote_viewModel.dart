@@ -16,11 +16,27 @@ class QuoteController extends ChangeNotifier {
     return quotes[random.nextInt(quotes.length)];
   }
 
-//Suppression des citations
+  // Ajout de citations
+  void addQuote(Quote q) {
+    _model.addQuote(q);
+    notifyListeners();
+  }
+
+  // Recherche de citations
+  Iterable<Quote> findQuote(String text, Categories? category) {
+    notifyListeners();
+    return _model.findQuote(text, category);
+  }
+
+  //Suppression des citations
   void removeQuote(int index) {
-    if (index >= 0 && index < _model.quotes.length) {
-      _model.quotes.removeAt(index);
-      notifyListeners();
-    }
+    _model.deleteQuote(index);
+    notifyListeners();
+  }
+
+  //Update citation
+  void updateQuote(int index, String text) {
+    _model.updateQuote(index, text);
+    notifyListeners();
   }
 }
